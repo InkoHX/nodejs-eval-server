@@ -1,7 +1,7 @@
 {
-  "name": "typescript-template-yarn",
+  "name": "nodejs-eval-server",
   "version": "0.0.1",
-  "description": "TypeScript template for Yarn.",
+  "description": "Run the code in a Docker container and return the results.",
   "main": "dist/index.js",
   "license": "MIT",
   "homepage": "",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/InkoHX/***.git"
+    "url": "https://github.com/InkoHX/nodejs-eval-server.git"
   },
   "bugs": {
-    "url": "https://github.com/InkoHX/***/issues"
+    "url": "https://github.com/InkoHX/nodejs-eval-server/issues"
   },
   "funding": {
     "type": "patreon",
@@ -28,9 +28,7 @@
     "compile": "tsc -p .",
     "compile:test": "tsc -p . --noEmit",
     "watch": "tsc -w -p .",
-    "watch:test": "tsc -w -p . --noEmit",
-    "build": "tsc",
-    "start": "node ./dist/index.js"
+    "watch:test": "tsc -w -p . --noEmit"
   },
   "dependencies": {
     "express": "^4.17.1"
