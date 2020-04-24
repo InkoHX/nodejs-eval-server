@@ -1,7 +1,7 @@
 {
   "name": "nodejs-eval-server",
   "version": "0.0.1",
-  "description": "Run the code in a Docker container and return the results.",
+  "description": "Run JavaScript code in Docker container.",
   "main": "dist/index.js",
   "license": "MIT",
   "homepage": "",
