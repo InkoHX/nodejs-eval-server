@@ -7,12 +7,24 @@ interface ExecAsyncException extends ExecException {
   stdout: string
 }
 
+interface EvalRequestBody {
+  readonly code?: string
+}
+
 const execAsync = util.promisify(exec)
 
 const app = express()
 
-app.get('/api/eval/:code', async (req, res) => {
-  const code = req.params.code
+app.use(express.json())
+
+app.post('/api/eval', async (req, res) => {
+  const code = (req.body as EvalRequestBody).code
+
+  if (!code) res.status(400).json({
+    status: 400,
+    message: 'Please send the code you want to run.'
+  })
+
   const result = await execAsync([
     'docker',
     'run',
@@ -51,9 +63,11 @@ async function listen (): Promise<void> {
   await execAsync('docker pull node:current')
   console.log('Downloaded node:current')
 
-  app.listen(process.env.PORT)
+  const port = process.env.PORT ?? 3000
+
+  app.listen(port)
     .on('error', error => console.error(error))
-    .on('listening', () => console.log(`Listening on http://localhost:${process.env.PORT}`))
+    .on('listening', () => console.log(`Listening on http://localhost:${port}`))
 }
 
 listen()
